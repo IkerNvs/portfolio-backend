@@ -39,7 +39,6 @@ app.post('/api/auth/login', (req, res) => {
   res.json({ message: 'Ruta capturada correctamente ✅' });
 });
 
-
 // ================== SPOTIFY NOW PLAYING ================== //
 let cachedAccessToken = null;
 let tokenExpiresAt = 0;
@@ -121,6 +120,15 @@ app.get("/api/now-playing", async (req, res) => {
 });
 // ========================================================= //
 
+// ================== MOSTRAR IP PÚBLICA DE RENDER ================== //
+axios.get('https://api.ipify.org')
+  .then((res) => {
+    console.log(`🛰 IP pública del servidor Render: ${res.data}`);
+  })
+  .catch((err) => {
+    console.error('❌ Error al obtener IP pública:', err.message);
+  });
+// ================================================================== //
 
 // Conexión a MongoDB y arranque del servidor
 mongoose.connect(process.env.MONGO_URI)
